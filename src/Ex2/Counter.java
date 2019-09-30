@@ -15,7 +15,9 @@ public class Counter {
         return n;
     }
 
-    public void inc(){
+    //Este 'synchronized' dá fix do programa!!!!!
+    // Sem isto nao funciona bem com muitas threads
+    public synchronized void inc(){
         n++;
     }
 }

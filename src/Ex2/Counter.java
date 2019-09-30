@@ -11,12 +11,12 @@ public class Counter {
         this.n = n;
     }
 
-    public int getN() {
+    //Estes 'synchronized' dao fix do programa!!!!!
+    // Sem isto nao funciona bem com muitas threads
+    public synchronized int getN() {
         return n;
     }
 
-    //Este 'synchronized' dá fix do programa!!!!!
-    // Sem isto nao funciona bem com muitas threads
     public synchronized void inc(){
         n++;
     }

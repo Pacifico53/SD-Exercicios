@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        int nContas = 100;
+        int nContas = 10;
 
         Banco bank = new Banco(nContas);
 

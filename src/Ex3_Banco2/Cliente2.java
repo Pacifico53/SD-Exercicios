@@ -10,6 +10,7 @@ public class Cliente2 implements Runnable {
     }
 
     public void run() {
-        System.out.println("0 = " + bank.check(0)+ ". 1 = "+bank.check(1)+".");
+        this.conta.credit(500);
+        System.out.println("Cliente 2 feito, conta 2 tem = " + this.conta.check());
     }
 }

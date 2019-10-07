@@ -7,10 +7,14 @@ public class Cliente1 implements Runnable {
     public Cliente1(Banco bank, Conta conta) {
         this.bank = bank;
         this.conta = conta;
+
     }
 
     public void run() {
-        bank.transfer(0, 1, 1000);
+        this.conta.deposit(1000);
+        bank.transfer(0,  1, 1000);
+        this.conta.deposit(53);
+        System.out.println("Cliente 1 feito, conta 1 tem = " + this.conta.check());
     }
 
 }

@@ -7,10 +7,10 @@ class Main {
         Bank bank = new Bank();
         ArrayList<Thread> threads = new ArrayList<>();
 
-        Thread t1 = new Thread(new Cliente1(bank, 1));
+        Thread t1 = new Thread(new Cliente1(bank));
         threads.add(t1);
 
-        Thread t2 = new Thread(new Cliente2(bank, 1));
+        Thread t2 = new Thread(new Cliente2(bank));
         threads.add(t2);
 
         for (Thread th : threads) {

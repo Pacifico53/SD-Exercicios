@@ -1,12 +1,16 @@
 package Ex4_BancoLocks;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 class Account {
     private float balance;
     private boolean closed;
+    private ReentrantLock lockAcc;
 
     public Account(float balance) {
         this.balance = balance;
         this.closed = false;
+        this.lockAcc = new ReentrantLock();
     }
 
     public void close(){
@@ -20,6 +24,14 @@ class Account {
 
     public float getBalance() {
         return balance;
+    }
+
+    public void lock(){
+        this.lockAcc.lock();
+    }
+
+    public void unlock(){
+        this.lockAcc.unlock();
     }
 
     public void setBalance(float balance) {

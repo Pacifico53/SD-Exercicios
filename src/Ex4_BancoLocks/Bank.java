@@ -38,13 +38,16 @@ class Bank {
         lockBank.lock();
 
         if (accounts.size() <= id || accounts.get(id).isClosed()){
-            throw new InvalidAccount();
+            throw new InvalidAccount(id);
         }
 
         Account a = accounts.get(id);
+        a.lock();
+
         float r = a.getBalance();
         a.close();
 
+        a.unlock();
         lockBank.unlock();
         return r;
     }
@@ -52,12 +55,17 @@ class Bank {
     public void transfer(int from, int to, float amount) throws InvalidAccount, NotEnoughFunds {
         lockBank.lock();
 
-        Account a0 = accounts.get(from);
-        Account a1 = accounts.get(to);
-
-        if (a0.isClosed() || a1.isClosed()){
+        if (accounts.size() <= from || accounts.size() <= to){
             throw new InvalidAccount();
         }
+        if (accounts.get(from).isClosed() || accounts.get(to).isClosed()){
+            throw new InvalidAccount();
+        }
+
+        Account a0 = accounts.get(from);
+        a0.lock();
+        Account a1 = accounts.get(to);
+        a1.lock();
 
         if (a0.getBalance() < amount){
             throw new NotEnoughFunds();
@@ -66,6 +74,8 @@ class Bank {
         a0.credit(amount);
         a1.deposit(amount);
 
+        a0.unlock();
+        a1.unlock();
         lockBank.unlock();
     }
 
@@ -81,8 +91,11 @@ class Bank {
         lockBank.lock();
 
         Account a = accounts.get(id);
+        a.lock();
+
         a.deposit(value);
 
+        a.unlock();
         lockBank.unlock();
     }
 
@@ -90,15 +103,17 @@ class Bank {
         lockBank.lock();
 
         if (accounts.size() <= id || accounts.get(id).isClosed()){
-            throw new InvalidAccount();
+            throw new InvalidAccount(id);
         }
 
         Account a = accounts.get(id);
+        a.lock();
+
         float r = a.getBalance();
 
+        a.unlock();
         lockBank.unlock();
 
         return r;
     }
-
 }

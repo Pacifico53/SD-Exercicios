@@ -12,6 +12,13 @@ public class Cliente2 implements Runnable{
     }
 
     public void run() {
+
+        try {
+            sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         int array[] = {0,1,2,3,4};
 
         try {
@@ -26,16 +33,5 @@ public class Cliente2 implements Runnable{
         } catch (InvalidAccount invalidAccount) {
             invalidAccount.printStackTrace();
         }
-
-        /*
-        id = bank.createAccount(53);
-        try {
-            bank.transfer(id, 0, 50);
-        } catch (InvalidAccount | NotEnoughFunds invalidAccount) {
-            invalidAccount.printStackTrace();
-        }
-        System.out.println("Id = "+ this.id+ ". Money = " + bank.check(this.id));
-        */
-
     }
 }

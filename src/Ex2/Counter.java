@@ -1,7 +1,7 @@
 package Ex2;
 
-public class Counter {
-    public int n;
+class Counter {
+    private int n;
 
     public Counter(int n) {
         this.n = n;

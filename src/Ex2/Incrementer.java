@@ -1,6 +1,6 @@
 package Ex2;
 
-public class Incrementer implements java.lang.Runnable {
+class Incrementer implements java.lang.Runnable {
     private Counter c;
     private int maxI;
 

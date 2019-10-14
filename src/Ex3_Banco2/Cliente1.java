@@ -1,6 +1,6 @@
 package Ex3_Banco2;
 
-public class Cliente1 implements Runnable {
+class Cliente1 implements Runnable {
     private Banco bank;
     private Conta conta;
 

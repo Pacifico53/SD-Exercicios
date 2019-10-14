@@ -2,7 +2,7 @@ package Ex3_Banco;
 
 import java.util.ArrayList;
 
-public class Main {
+class Main {
     public static void main(String[] args) {
         int nThreads = 2;
         int nContas = 100;

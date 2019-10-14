@@ -2,7 +2,7 @@ package Ex3_Banco2;
 
 import java.util.ArrayList;
 
-public class Main {
+class Main {
     public static void main(String[] args) {
         int nContas = 10;
 

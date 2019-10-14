@@ -1,6 +1,6 @@
 package Ex1;
 
-public class NThreads implements java.lang.Runnable{
+class NThreads implements java.lang.Runnable{
     private int n;
 
     public NThreads(int n) {

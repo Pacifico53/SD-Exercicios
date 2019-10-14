@@ -1,6 +1,6 @@
 package Ex3_Banco;
 
-public class Service implements Runnable {
+class Service implements Runnable {
     private Banco bank;
     private int id;
 

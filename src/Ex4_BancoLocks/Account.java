@@ -1,6 +1,6 @@
 package Ex4_BancoLocks;
 
-public class Account {
+class Account {
     private float balance;
     private boolean closed;
 

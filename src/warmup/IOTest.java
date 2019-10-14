@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
 
-public class IOTest {
+class IOTest {
     public static void main(String[] args) {
         String line;
         BufferedReader in = new BufferedReader( new InputStreamReader(System.in));

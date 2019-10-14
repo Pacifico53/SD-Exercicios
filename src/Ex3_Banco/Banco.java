@@ -1,7 +1,7 @@
 package Ex3_Banco;
 
-public class Banco{
-    private double contas[];
+class Banco{
+    private double[] contas;
 
     public Banco(int nContas) {
         this.contas = new double[nContas];
@@ -16,7 +16,7 @@ public class Banco{
         return contas;
     }
 
-    public void setContas(double contas[]) {
+    public void setContas(double[] contas) {
         this.contas = contas;
     }
 

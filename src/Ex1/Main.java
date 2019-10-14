@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class Main {
+class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
         String strN, strI;
         int intN, intI;

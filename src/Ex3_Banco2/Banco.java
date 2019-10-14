@@ -1,7 +1,7 @@
 package Ex3_Banco2;
 
-public class Banco {
-    private Conta contas[];
+class Banco {
+    private Conta[] contas;
 
     public Banco(int nContas) {
         this.contas = new Conta[nContas];

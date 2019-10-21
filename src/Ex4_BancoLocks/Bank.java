@@ -80,10 +80,17 @@ class Bank {
     }
 
     public float totalBalance(int[] accounts) throws InvalidAccount {
+        //TODO isto tem de fazer lock as contas todas do intervalo antes
+        // de calcular o total, e depois voltar a fazer lock
+        // Nao se pode usar check() pq o check faz locks
         float t = 0;
+        lockBank.lock();
+
         for(int i : accounts){
             t += this.check(i);
         }
+
+        lockBank.unlock();
         return t;
     }
 

@@ -17,10 +17,13 @@ public class Server {
 
             clSock = serverSocket.accept();
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(clSock.getInputStream()));
-            PrintWriter out = new PrintWriter(clSock.getOutputStream());
+            Worker worker = new Worker(client_id++, clSock);
+            Thread thread = new Thread(worker);
+
+            thread.start();
 
             String s;
+            //TODO OS WORKERS É QUE LEEM E MANDAM AS RESPOSTAS, O SERVER NAO VAI LER NADA!! CHANGE THIS SHIT
             while ((s = in.readLine()) != null) {
                 System.out.println("Got a message (\"" + s + "\"). Sending reply...");
                 out.println("Hello from the mighty server! I shall repeat your words! Behold! : \"" +s +"\"");

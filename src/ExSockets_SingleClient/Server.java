@@ -1,4 +1,4 @@
-package ExSockets;
+package ExSockets_SingleClient;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,10 +19,11 @@ public class Server {
             Socket clSock = serverSocket.accept();
             BufferedReader in = new BufferedReader(new InputStreamReader(clSock.getInputStream()));
             PrintWriter out = new PrintWriter(clSock.getOutputStream());
-            String s = "a";
+            String s;
 
             while((s = in.readLine()) !=null){
-                out.println(s);
+                System.out.println("Got a message (\""+s+"\"). Sending reply...");
+                out.println("Hello from the mighty server! I shall repeat your words! Behold! : \"" +s +"\"");
                 out.flush();
             }
 

@@ -16,30 +16,23 @@ public class Worker implements Runnable {
     }
 
     public void run() {
-        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        String s;
 
-        String string_in, string_out;
-        System.out.print("> ");
-        while(true){
-            try {
-                string_in = in.readLine();
+        try {
+            BufferedReader in = new BufferedReader(new InputStreamReader(clSock.getInputStream()));
+            PrintWriter out = new PrintWriter(clSock.getOutputStream());
 
-                if (string_in == null || string_in.equals("exit")) break;
-
-                System.out.println("Message sent: \"" +string_in+"\".");
-                out.println(id+"_"+string_in);
+            while((s = in.readLine()) !=null){
+                System.out.println("Got a message (\""+s+"\"). Sending reply...");
+                out.println("Hello from the mighty server! I shall repeat your words! Behold! : \"" +s +"\"");
                 out.flush();
-                string_out = in_socket.readLine();
-
-                System.out.println("Message received: \"" + string_out + "\"");
-                System.out.print("> ");
-            } catch (IOException e) {
-                e.printStackTrace();
             }
 
-
+            clSock.shutdownOutput();
+            clSock.shutdownInput();
+            clSock.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-
     }
 }

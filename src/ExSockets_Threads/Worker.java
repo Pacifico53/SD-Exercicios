@@ -7,11 +7,9 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 public class Worker implements Runnable {
-    private int id;
     private Socket clSock;
 
-    public Worker(int id, Socket clSock) {
-        this.id = id;
+    public Worker(Socket clSock) {
         this.clSock = clSock;
     }
 

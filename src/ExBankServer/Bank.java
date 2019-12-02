@@ -37,7 +37,7 @@ public class Bank {
     public float closeAccount(int id) throws InvalidAccount {
         lockBank.lock();
 
-        if (accounts.size() <= id || accounts.get(id).isClosed()){
+        if (accounts.size() <= id){
             throw new InvalidAccount(id);
         }
 
@@ -62,14 +62,18 @@ public class Bank {
             throw new InvalidAccount();
         }
 
+
         Account a0 = accounts.get(from);
-        a0.lock();
-        Account a1 = accounts.get(to);
-        a1.lock();
 
         if (a0.getBalance() < amount){
             throw new NotEnoughFunds();
         }
+
+        a0.lock();
+        Account a1 = accounts.get(to);
+        a1.lock();
+
+
 
         a0.credit(amount);
         a1.deposit(amount);
@@ -97,11 +101,12 @@ public class Bank {
     public void deposit(int id, float value) throws InvalidAccount {
         lockBank.lock();
 
-        if (accounts.size() <= id || accounts.get(id).isClosed()){
+        if (accounts.size() <= id){
             throw new InvalidAccount(id);
         }
 
         Account a = accounts.get(id);
+
         a.lock();
 
         a.deposit(value);
@@ -110,14 +115,22 @@ public class Bank {
         lockBank.unlock();
     }
 
-    public void credit(int id, float value) throws InvalidAccount {
+    public void credit(int id, float value) throws InvalidAccount, NotEnoughFunds {
         lockBank.lock();
 
-        if (accounts.size() <= id || accounts.get(id).isClosed()){
+        if (accounts.size() <= id){
+            throw new InvalidAccount(id);
+        }
+
+        if (accounts.get(id).isClosed()) {
             throw new InvalidAccount(id);
         }
 
         Account a = accounts.get(id);
+        if (a.getBalance() < value){
+            throw new NotEnoughFunds();
+        }
+
         a.lock();
 
         a.credit(value);
@@ -129,7 +142,11 @@ public class Bank {
     public float check(int id) throws InvalidAccount{
         lockBank.lock();
 
-        if (accounts.size() <= id || accounts.get(id).isClosed()){
+        if (accounts.size() <= id){
+            throw new InvalidAccount(id);
+        }
+
+        if(accounts.get(id).isClosed()) {
             throw new InvalidAccount(id);
         }
 
